@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://5blpnymuiwi0"]
+
+[ext_resource type="Script" uid="uid://c2ixdhrf6sst6" path="res://scripts/Initializer.gd" id="1_o8cx1"]
+[ext_resource type="Texture2D" uid="uid://260tvsr7rcbn" path="res://assets/art/wall-tile-aseprite-spritesheet.png" id="2_bdhei"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ug7s2"]
+resource_name = "dtest-tilemap"
+texture = ExtResource("2_bdhei")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_pupd3"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_ug7s2")
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_o8cx1")
+width = 40
+height = 40
+maxRooms = 8
+minRooms = 4
+maxRoomHeight = 8
+maxRoomWidth = 8
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_pupd3")
+rendering_quadrant_size = 32
