@@ -4,14 +4,14 @@
 Currently a simple exploration of "Rooms and Corridors" ASCII dungeon generation.
 
 
-Version: GODOT 4.5 (GDscript)
+** Version: ** GODOT 4.5 (GDscript)
 
-Language: GDScript
+** Language: ** GDScript
 
-Artwork: Aseprite Pixel Art
+** Artwork: ** Aseprite Pixel Art
 
 
 
-John "JP" Green
+** John "JP" Green ** 
 
 Columbia Universtiy Game Development
