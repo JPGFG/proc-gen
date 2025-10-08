@@ -12,11 +12,11 @@ var gameMap: GameMap
 var roomlist = []
 
 
-func _init(maxRooms:int, minRooms:int, maxRoomH:int, maxRoomW:int, map:GameMap):
-	self.maxRooms = maxRooms
-	self.minRooms = minRooms
-	self.maxRoomH = maxRoomH
-	self.maxRoomW = maxRoomW
+func _init(maximum_rooms:int, minimum_rooms:int, max_room_height:int, max_room_width:int, map:GameMap):
+	self.maxRooms = maximum_rooms
+	self.minRooms = minimum_rooms
+	self.maxRoomH = max_room_height
+	self.maxRoomW = max_room_width
 	self.gameMap = map
 	self.minRoomdimension = 2
 

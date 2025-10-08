@@ -5,6 +5,7 @@ var map_h: int
 var map_w: int
 var mapRect: Rect2i
 
+
 var map = []
 
 func _init(map_width:int, map_height:int):
@@ -15,9 +16,9 @@ func _init(map_width:int, map_height:int):
 	fillMap()
 
 func fillMap():
-	for x in map_w:
+	for x in range(map_w):
 		map.append([])
-		for y in map_h:
+		for y in range(map_h):
 			map[x].append(WallCell.new(x, y))
 
 func render():
