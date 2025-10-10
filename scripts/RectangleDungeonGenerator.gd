@@ -1,5 +1,13 @@
-class_name DungeonGenerator
+class_name RectangleDungeonGenerator
 extends RefCounted
+
+# This is a basic dungeon generator which builds rectangular rooms and connects them via
+# horizontal-first corridor generation.  The GameMap class creates the board filled with
+# Wall Cells, the initializer class then bakes whatever the generated map is into tiles
+# This is done at the same time as the render map function.
+# This simple dungeon generator was completed on 10/10/25.
+# Written by JP Green at Columbia University.
+
 
 var maxRooms: int
 var minRooms: int

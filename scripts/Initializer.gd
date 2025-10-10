@@ -2,12 +2,13 @@ class_name Initializer
 extends Node2D
 
 var gameMap: GameMap
-var dungeonGenerator: DungeonGenerator
+var rectangle_dungeon_generator: RectangleDungeonGenerator
+var drunk_walk_generator: DrunkWalkDungeonGenerator
 @export_category("Game Map Settings")
 @export var width: int
 @export var height: int
 
-@export_category("Dungeon Generator Settings")
+@export_category("Rectangle Dungeon Generator Settings")
 @export var maxRooms:int
 @export var minRooms:int
 @export var maxRoomHeight:int
@@ -24,9 +25,8 @@ func _ready():
 	
 	
 	gameMap = GameMap.new(width, height)
-	dungeonGenerator = DungeonGenerator.new(maxRooms, minRooms, maxRoomHeight, maxRoomWidth, gameMap)
-	
-	dungeonGenerator.genDungeon()
+	rectangle_dungeon_generator = RectangleDungeonGenerator.new(maxRooms, minRooms, maxRoomHeight, maxRoomWidth, gameMap)
+	rectangle_dungeon_generator.genDungeon()
 	
 	gameMap.render()
 	bakeMap(gameMap)
@@ -38,6 +38,7 @@ func bakeMap(game_map: GameMap) -> void:
 		return
 	
 	tileMap.clear()
+	@warning_ignore("unused_variable")
 	var tileSet := tileMap.tile_set
 	var source_id = tileMap.tile_set.get_source_id(0)
 	for y in range(game_map.map_h):

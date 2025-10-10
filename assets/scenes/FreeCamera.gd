@@ -10,7 +10,7 @@ extends CharacterBody2D
 func _ready() -> void:
 	_ensure_input_actions()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var input_vec := Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -49,6 +49,7 @@ func _ensure_input_actions() -> void:
 		["zoom_out", KEY_E, -1],
 	]
 	for item in a:
+		@warning_ignore("shadowed_variable_base_class")
 		var name = item[0]
 		if not InputMap.has_action(name):
 			InputMap.add_action(name)
