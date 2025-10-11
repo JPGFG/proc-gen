@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://2x31sgdretky"]
+
+[ext_resource type="FontFile" uid="uid://jpnjoj46dxw4" path="res://assets/fonts/aurora_24/aurora-24.ttf" id="1_jrumv"]
+
+[resource]
+Button/fonts/font = ExtResource("1_jrumv")
+LineEdit/fonts/font = ExtResource("1_jrumv")
+OptionButton/fonts/font = ExtResource("1_jrumv")
+RichTextLabel/fonts/normal_font = ExtResource("1_jrumv")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://5blpnymuiwi0"]
+[gd_scene load_steps=8 format=3 uid="uid://5blpnymuiwi0"]
 
 [ext_resource type="Texture2D" uid="uid://260tvsr7rcbn" path="res://assets/art/wall-tile-aseprite-spritesheet.png" id="2_bdhei"]
+[ext_resource type="Theme" uid="uid://2x31sgdretky" path="res://assets/styles/style_theme.tres" id="2_pupd3"]
 [ext_resource type="PackedScene" uid="uid://bjoiwa2wyss7w" path="res://assets/scenes/ui_overlay.tscn" id="2_ug7s2"]
 [ext_resource type="Script" uid="uid://dfqkh73h463t" path="res://scripts/handlers/FreeCamera.gd" id="3_bdhei"]
 
@@ -19,9 +20,10 @@ sources/0 = SubResource("TileSetAtlasSource_ug7s2")
 
 [node name="Game" type="Node2D"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UIlayer" type="CanvasLayer" parent="."]
 
-[node name="UIOverlay" parent="CanvasLayer" node_paths=PackedStringArray("tileMap") instance=ExtResource("2_ug7s2")]
+[node name="UIOverlay" parent="UIlayer" node_paths=PackedStringArray("tileMap") instance=ExtResource("2_ug7s2")]
+theme = ExtResource("2_pupd3")
 tileMap = NodePath("../../TileMapLayer")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

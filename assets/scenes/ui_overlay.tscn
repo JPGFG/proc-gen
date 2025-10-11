@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjoiwa2wyss7w"]
+[gd_scene load_steps=6 format=3 uid="uid://bjoiwa2wyss7w"]
 
+[ext_resource type="Theme" uid="uid://2x31sgdretky" path="res://assets/styles/style_theme.tres" id="1_q2qf7"]
 [ext_resource type="Script" uid="uid://bhds28eug7fxt" path="res://scripts/handlers/GenerationHandler.gd" id="1_ujye4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxp2v"]
@@ -18,6 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_q2qf7")
 script = ExtResource("1_ujye4")
 
 [node name="GenerationPanel" type="Panel" parent="."]
@@ -58,25 +60,25 @@ popup/item_1/id = 1
 
 [node name="GenerateButton" type="Button" parent="GenerationPanel"]
 layout_mode = 0
-offset_left = 267.0
+offset_left = 275.0
 offset_top = 203.0
-offset_right = 429.0
+offset_right = 437.0
 offset_bottom = 242.0
 text = "GO!"
 
 [node name="ClearEntriesButton" type="Button" parent="GenerationPanel"]
 layout_mode = 0
-offset_left = 267.0
+offset_left = 275.0
 offset_top = 157.0
-offset_right = 429.0
+offset_right = 437.0
 offset_bottom = 196.0
 text = "CLEAR"
 
 [node name="PanelContainer" type="PanelContainer" parent="GenerationPanel"]
 layout_mode = 0
-offset_left = 10.0
+offset_left = 6.0
 offset_top = 72.0
-offset_right = 251.0
+offset_right = 264.0
 offset_bottom = 190.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_r1i68")
 
@@ -93,7 +95,7 @@ anchor_bottom = 0.5
 offset_left = -354.0
 offset_top = -484.0
 offset_right = -12.0
-offset_bottom = -410.0
+offset_bottom = -402.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lxp2v")
@@ -101,8 +103,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_lxp2v")
 [node name="RTL_TITLE" type="RichTextLabel" parent="MapOptionsPanel"]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 5.0
-offset_right = 116.0
+offset_top = 2.0
+offset_right = 177.0
 offset_bottom = 32.0
 text = "Map Options:"
 horizontal_alignment = 1
@@ -110,10 +112,10 @@ vertical_alignment = 1
 
 [node name="RTL_MWIDTH" type="RichTextLabel" parent="MapOptionsPanel"]
 layout_mode = 0
-offset_left = 7.0
+offset_left = 1.0
 offset_top = 38.0
 offset_right = 82.0
-offset_bottom = 67.0
+offset_bottom = 69.0
 text = "WIDTH:"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -129,10 +131,10 @@ alignment = 1
 
 [node name="RTL_MHEIGHT" type="RichTextLabel" parent="MapOptionsPanel"]
 layout_mode = 0
-offset_left = 177.0
+offset_left = 159.0
 offset_top = 38.0
 offset_right = 252.0
-offset_bottom = 67.0
+offset_bottom = 75.0
 text = "HEIGHT:"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -152,7 +154,7 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -40.0
-offset_right = 174.0
+offset_right = 248.0
 grow_vertical = 0
 text = "Press X to Hide UI."
 horizontal_alignment = 1

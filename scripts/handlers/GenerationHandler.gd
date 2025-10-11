@@ -23,6 +23,10 @@ var inputOptionArray : Array[InputOption] = []
 var floor_atlas := Vector2(0, 0)
 var wall_atlas := Vector2(1, 0)
 
+#TODO implement x to toggle UI
+func _unhandled_input(event):
+	pass
+
 func _on_d_generator_button_item_selected(index):
 	match index:
 		0: generatorChoice = dungeonType.RECT_CORRIDOR
@@ -84,11 +88,13 @@ func _on_clear_entries_pressed():
 
 func _on_generate_button_pressed():
 	var valid: bool = true
-	if (i_MAPHEIGHT_FIELD.text == "" or i_MAPWIDTH_FIELD.text == "" or int(i_MAPWIDTH_FIELD.text) is not int):
+	if (i_MAPHEIGHT_FIELD.text == "" or i_MAPWIDTH_FIELD.text == ""):
 		valid = false
 	for option in inputOptionArray:
 		if option.inputField.text == "": valid = false
-	if valid: generate()
+	if valid: 
+		generate()
+		return
 	showWarning("Not all fields filled out!")
 	return
 
