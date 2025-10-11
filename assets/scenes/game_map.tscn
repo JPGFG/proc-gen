@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://5blpnymuiwi0"]
 
-[ext_resource type="Script" uid="uid://c2ixdhrf6sst6" path="res://scripts/Initializer.gd" id="1_o8cx1"]
 [ext_resource type="Texture2D" uid="uid://260tvsr7rcbn" path="res://assets/art/wall-tile-aseprite-spritesheet.png" id="2_bdhei"]
-[ext_resource type="Script" uid="uid://dfqkh73h463t" path="res://assets/scenes/FreeCamera.gd" id="3_bdhei"]
+[ext_resource type="PackedScene" uid="uid://bjoiwa2wyss7w" path="res://assets/scenes/ui_overlay.tscn" id="2_ug7s2"]
+[ext_resource type="Script" uid="uid://dfqkh73h463t" path="res://scripts/handlers/FreeCamera.gd" id="3_bdhei"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ug7s2"]
 resource_name = "dtest-tilemap"
@@ -17,15 +17,12 @@ sources/0 = SubResource("TileSetAtlasSource_ug7s2")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o8cx1"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("tileMap")]
-script = ExtResource("1_o8cx1")
-width = 40
-height = 40
-maxRooms = 8
-minRooms = 4
-maxRoomHeight = 8
-maxRoomWidth = 8
-tileMap = NodePath("TileMapLayer")
+[node name="Game" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UIOverlay" parent="CanvasLayer" node_paths=PackedStringArray("tileMap") instance=ExtResource("2_ug7s2")]
+tileMap = NodePath("../../TileMapLayer")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_pupd3")

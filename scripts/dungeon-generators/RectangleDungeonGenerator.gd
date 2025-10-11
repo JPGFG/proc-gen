@@ -5,7 +5,7 @@ extends RefCounted
 # horizontal-first corridor generation.  The GameMap class creates the board filled with
 # Wall Cells, the initializer class then bakes whatever the generated map is into tiles
 # This is done at the same time as the render map function.
-# This simple dungeon generator was completed on 10/10/25.
+# This simple dungeon generator was completed on 10/09/25.
 # Written by JP Green at Columbia University.
 
 
