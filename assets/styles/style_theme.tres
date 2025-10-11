@@ -6,4 +6,5 @@
 Button/fonts/font = ExtResource("1_jrumv")
 LineEdit/fonts/font = ExtResource("1_jrumv")
 OptionButton/fonts/font = ExtResource("1_jrumv")
+RichTextLabel/constants/outline_size = 6
 RichTextLabel/fonts/normal_font = ExtResource("1_jrumv")

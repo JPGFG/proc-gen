@@ -52,6 +52,7 @@ offset_top = 29.0
 offset_right = 184.0
 offset_bottom = 66.0
 toggle_mode = false
+allow_reselect = true
 item_count = 2
 popup/item_0/text = "Rooms & Corridors"
 popup/item_0/id = 0

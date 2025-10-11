@@ -2,7 +2,6 @@ class_name GenerationHandler
 extends Control
 
 enum dungeonType {RECT_CORRIDOR, DRUNKEN_WALK}
-
 var generatorChoice = dungeonType
 var dungeonGenerators := []
 
@@ -25,7 +24,9 @@ var wall_atlas := Vector2(1, 0)
 
 #TODO implement x to toggle UI
 func _unhandled_input(event):
-	pass
+	if event.is_pressed() and event.keycode == KEY_X:
+		if self.visible == true: self.visible = false
+		else: self.visible = true
 
 func _on_d_generator_button_item_selected(index):
 	match index:
@@ -84,10 +85,14 @@ func add_input_option(_display_text: String):
 	inputOptionArray.append(option)
 
 func _on_clear_entries_pressed():
+	tileMap.clear()
 	clearOptionUI()
 
 func _on_generate_button_pressed():
 	var valid: bool = true
+	if inputOptionArray.size() == 0:
+		showWarning("Pick a dungeon type to Generate.")
+		return
 	if (i_MAPHEIGHT_FIELD.text == "" or i_MAPWIDTH_FIELD.text == ""):
 		valid = false
 	for option in inputOptionArray:
