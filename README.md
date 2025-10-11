@@ -1,17 +1,16 @@
-# proc-gen
+# Procedural-Generator
 
 
-Currently a simple exploration of "Rooms and Corridors" ASCII dungeon generation.
+Explorations in Procedural Generation
+
+**Version:** GODOT 4.5 (GDscript)
+
+**Language:** GDScript
+
+**Artwork:** Aseprite Pixel Art
 
 
-** Version: ** GODOT 4.5 (GDscript)
 
-** Language: ** GDScript
-
-** Artwork: ** Aseprite Pixel Art
-
-
-
-** John "JP" Green ** 
+**John "JP" Green** 
 
 Columbia Universtiy Game Development
