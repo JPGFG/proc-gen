@@ -2,8 +2,6 @@ class_name Initializer
 extends Node2D
 
 var gameMap: GameMap
-var rectangle_dungeon_generator: RectangleDungeonGenerator
-var drunk_walk_generator: DrunkWalkDungeonGenerator
 @export_category("Game Map Settings")
 @export var width: int
 @export var height: int
@@ -24,14 +22,16 @@ var wall_atlas := Vector2(1, 0)
 func _ready():
 	
 	gameMap = GameMap.new(width, height)
+	@warning_ignore("unused_variable")
+	var dungeonGenerator = PerlinNoiseDungeonGenerator.new(gameMap)
+	# Testing Zone #
+	# Initialize your dungeonGenerator then render the map, final test is baking.
+	dungeonGenerator.genDungeon()
 	
-	drunk_walk_generator = DrunkWalkDungeonGenerator.new(gameMap, 400, 8)
-	drunk_walk_generator.genDungeon()
-	# rectangle_dungeon_generator = RectangleDungeonGenerator.new(maxRooms, minRooms, maxRoomHeight, maxRoomWidth, gameMap)
-	# rectangle_dungeon_generator.genDungeon()
+	# Testing Zone #
 	
-	# gameMap.render()
-	bakeMap(gameMap)
+	gameMap.render()
+	# bakeMap(gameMap)
 
 
 func bakeMap(game_map: GameMap) -> void:

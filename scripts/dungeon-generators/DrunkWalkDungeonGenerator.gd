@@ -1,12 +1,11 @@
 class_name DrunkWalkDungeonGenerator
-extends RefCounted
+extends DungeonGenerator
 
 # This is a demonstration of "a drunken walk" style of terrain generation.
 # This can be used to generate water flows throughout a game map, or cavelike
 # natural bounded terrain.  This generator written by JP at Columbia University
 # on 10/10
 
-var gameMap: GameMap
 var walkedTiles = []
 var walkers: int
 var steps : int

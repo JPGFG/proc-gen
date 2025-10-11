@@ -1,3 +1,4 @@
+@abstract
 class_name DungeonGenerator
 extends RefCounted
 
@@ -5,5 +6,5 @@ extends RefCounted
 
 var gameMap: GameMap
 
-func genDungeon():
-	pass
+@abstract
+func genDungeon()

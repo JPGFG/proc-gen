@@ -23,7 +23,7 @@ var floor_atlas := Vector2(0, 0)
 var wall_atlas := Vector2(1, 0)
 
 #TODO implement x to toggle UI
-func _unhandled_input(event):
+func _unhandled_key_input(event):
 	if event.is_pressed() and event.keycode == KEY_X:
 		if self.visible == true: self.visible = false
 		else: self.visible = true
