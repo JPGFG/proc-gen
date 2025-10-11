@@ -10,15 +10,17 @@ config_version=5
 
 [application]
 
-config/name="proc-gen"
+config/name="Procedural-Generator"
+config/description="A Procedural Generation Application"
 run/main_scene="uid://5blpnymuiwi0"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://b58d1te0tdf60"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=2
 
 [rendering]
 
