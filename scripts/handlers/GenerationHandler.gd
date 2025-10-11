@@ -12,6 +12,9 @@ var inputOption : PackedScene = preload("res://assets/scenes/input_option.tscn")
 @onready var i_MAPHEIGHT_FIELD: LineEdit = $MapOptionsPanel/FIELD_HEIGHT
 @onready var i_MAPWIDTH_FIELD: LineEdit = $MapOptionsPanel/FIELD_WIDTH
 
+@onready var warningPanel: Control = $Warning
+@onready var warningLabel: RichTextLabel = $Warning/WarningPanel/WarningText
+
 var inputOptionArray : Array[InputOption] = []
 
 @export_category("TileMap Settings")
@@ -61,19 +64,13 @@ func clearOptionUI():
 	inputOptionArray.clear()
 
 func handle_dw_generation():
-	# Walkers
 	add_input_option("Walkers")
-	# Steps
 	add_input_option("Steps")
 
 func handle_rc_generation():
-	# Max Rooms
 	add_input_option("Max Rooms")
-	# Min Rooms
 	add_input_option("Min Rooms")
-	# Max Room Width
 	add_input_option("Max Room Width")
-	# Max Room Height
 	add_input_option("Max Room Height")
 
 func add_input_option(_display_text: String):
@@ -86,7 +83,20 @@ func _on_clear_entries_pressed():
 	clearOptionUI()
 
 func _on_generate_button_pressed():
-	generate()
+	var valid: bool = true
+	if (i_MAPHEIGHT_FIELD.text == "" or i_MAPWIDTH_FIELD.text == "" or int(i_MAPWIDTH_FIELD.text) is not int):
+		valid = false
+	for option in inputOptionArray:
+		if option.inputField.text == "": valid = false
+	if valid: generate()
+	showWarning("Not all fields filled out!")
+	return
+
+func showWarning(warningText: String):
+	warningLabel.text = warningText
+	warningPanel.visible = true
+	await get_tree().create_timer(2).timeout
+	warningPanel.visible = false
 
 func bakeMap(game_map: GameMap) -> void:
 	if tileMap == null:
