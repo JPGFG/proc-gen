@@ -1,7 +1,7 @@
 class_name GenerationHandler
 extends Control
 
-enum dungeonType {RECT_CORRIDOR, DRUNKEN_WALK}
+enum dungeonType {RECT_CORRIDOR, DRUNKEN_WALK, PERLIN_NOISE}
 var generatorChoice = dungeonType
 var dungeonGenerators := []
 
@@ -32,6 +32,7 @@ func _on_d_generator_button_item_selected(index):
 	match index:
 		0: generatorChoice = dungeonType.RECT_CORRIDOR
 		1: generatorChoice = dungeonType.DRUNKEN_WALK
+		2: generatorChoice = dungeonType.PERLIN_NOISE
 	setupGenUI(generatorChoice)
 
 func generate():
@@ -53,6 +54,15 @@ func generate():
 			_dungeonGenerator = DrunkWalkDungeonGenerator.new(_game_map, _steps, _walkers)
 			_dungeonGenerator.genDungeon()
 			bakeMap(_game_map)
+		dungeonType.PERLIN_NOISE:
+			var _frequency : float = float(inputOptionArray[0].inputField.text)
+			var _fractal_octaves : int = int(inputOptionArray[1].inputField.text)
+			var _fractal_lacunarity : float = float(inputOptionArray[2].inputField.text)
+			var _fractal_gain : float = float(inputOptionArray[3].inputField.text)
+			
+			_dungeonGenerator = PerlinNoiseDungeonGenerator.new(_game_map, randi(), _frequency, _fractal_octaves, _fractal_lacunarity, _fractal_gain)
+			_dungeonGenerator.genDungeon()
+			bakeMap(_game_map)
 
 func setupGenUI(type:dungeonType):
 	match type:
@@ -62,6 +72,9 @@ func setupGenUI(type:dungeonType):
 		dungeonType.DRUNKEN_WALK:
 			clearOptionUI()
 			handle_dw_generation()
+		dungeonType.PERLIN_NOISE:
+			clearOptionUI()
+			handle_pn_generation()
 
 func clearOptionUI():
 	for option in inputOptionArray:
@@ -78,9 +91,18 @@ func handle_rc_generation():
 	add_input_option("Max Room Width")
 	add_input_option("Max Room Height")
 
-func add_input_option(_display_text: String):
+func handle_pn_generation():
+	add_input_option("Frequency", 1)
+	add_input_option("Octaves")
+	add_input_option("Lacunarity", 1)
+	add_input_option("Gain", 1)
+
+# type 0 == int, type 1 == float
+func add_input_option(_display_text: String, type : int = 0):
 	var option = inputOption.instantiate() as InputOption
 	option.displayText.text = _display_text
+	if type == 1:
+		option.inputField.placeholder_text = "/flt/"
 	inputOptionContainer.add_child(option)
 	inputOptionArray.append(option)
 

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bjoiwa2wyss7w" path="res://assets/scenes/ui_overlay.tscn" id="2_ug7s2"]
 [ext_resource type="Script" uid="uid://dfqkh73h463t" path="res://scripts/handlers/FreeCamera.gd" id="3_bdhei"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ug7s2"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bdhei"]
 resource_name = "dtest-tilemap"
 texture = ExtResource("2_bdhei")
 texture_region_size = Vector2i(32, 32)
@@ -13,7 +13,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_pupd3"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_ug7s2")
+sources/0 = SubResource("TileSetAtlasSource_bdhei")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o8cx1"]
 

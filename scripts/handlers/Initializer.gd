@@ -6,12 +6,6 @@ var gameMap: GameMap
 @export var width: int
 @export var height: int
 
-@export_category("Rectangle Dungeon Generator Settings")
-@export var maxRooms:int
-@export var minRooms:int
-@export var maxRoomHeight:int
-@export var maxRoomWidth:int
-
 @export_category("TileMap Settings")
 @export var tileMap : TileMapLayer
 
@@ -20,14 +14,13 @@ var wall_atlas := Vector2(1, 0)
 
 
 func _ready():
-	
+	var dungeonGenerator: DungeonGenerator
 	gameMap = GameMap.new(width, height)
-	@warning_ignore("unused_variable")
-	var dungeonGenerator = PerlinNoiseDungeonGenerator.new(gameMap)
 	# Testing Zone #
 	# Initialize your dungeonGenerator then render the map, final test is baking.
-	dungeonGenerator.genDungeon()
+	dungeonGenerator = CellularAutomataDungeonGenerator.new(gameMap, 0.8, 4, 4, 1)
 	
+	dungeonGenerator.genDungeon()
 	# Testing Zone #
 	
 	gameMap.render()

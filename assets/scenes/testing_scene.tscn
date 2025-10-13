@@ -16,8 +16,8 @@ sources/0 = SubResource("TileSetAtlasSource_ueoq7")
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("tileMap")]
 script = ExtResource("1_sqc05")
-width = 50
-height = 50
+width = 30
+height = 30
 tileMap = NodePath("TileMapLayer")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

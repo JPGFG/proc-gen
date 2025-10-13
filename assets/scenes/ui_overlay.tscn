@@ -53,11 +53,13 @@ offset_right = 184.0
 offset_bottom = 66.0
 toggle_mode = false
 allow_reselect = true
-item_count = 2
+item_count = 3
 popup/item_0/text = "Rooms & Corridors"
 popup/item_0/id = 0
 popup/item_1/text = "Drunken Walk"
 popup/item_1/id = 1
+popup/item_2/text = "Perlin Noise"
+popup/item_2/id = 2
 
 [node name="GenerateButton" type="Button" parent="GenerationPanel"]
 layout_mode = 0
