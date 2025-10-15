@@ -18,13 +18,13 @@ func _ready():
 	gameMap = GameMap.new(width, height)
 	# Testing Zone #
 	# Initialize your dungeonGenerator then render the map, final test is baking.
-	dungeonGenerator = CellularAutomataDungeonGenerator.new(gameMap, 0.8, 4, 4, 1)
+	dungeonGenerator = CellularAutomataDungeonGenerator.new(gameMap, 0.45, 6, 3, 3)
 	
 	dungeonGenerator.genDungeon()
 	# Testing Zone #
 	
 	gameMap.render()
-	# bakeMap(gameMap)
+	bakeMap(gameMap)
 
 
 func bakeMap(game_map: GameMap) -> void:

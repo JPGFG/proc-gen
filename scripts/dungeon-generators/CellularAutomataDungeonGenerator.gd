@@ -17,64 +17,71 @@ func _init(_game_map: GameMap, _place_threshold : float, _survival_threshold: in
 	desired_generations = _desired_generations
 
 func genDungeon():
+	var readMap = []
+	var writeMap = []
 	
 	# World Setup
 	for x in range(1, gameMap.map_w - 1):
 		for y in range(1, gameMap.map_h - 1):
 			var placement_chance = randf_range(0, 1)
-			if placement_chance <= place_threshold:
+			if placement_chance >= place_threshold:
 				gameMap.map[x][y] = FloorCell.new(x, y)
 			else:
 				gameMap.map[x][y] = WallCell.new(x, y)
+	
+	# sets up read and write maps for CA runs.
+	readMap = gameMap.map.duplicate(true)
+	writeMap = readMap.duplicate(true)
 	
 	# Begin Game of Life
 	for current_generation in range(desired_generations):
 		for x in range(1, gameMap.map_w - 1):
 			for y in range(1, gameMap.map_h - 1):
-				var live_neighbors = getLiveNeighbors(gameMap.map[x][y])
-				if gameMap.map[x][y] is FloorCell: # ALIVE
-					if live_neighbors <= survival_threshold:
-						gameMap.map[x][y] = WallCell.new(x, y)
+				var live_neighbors = getLiveNeighbors(Vector2i(x, y), readMap)
+				if readMap[x][y] is FloorCell: # ALIVE
+					if live_neighbors >= survival_threshold:
+						writeMap[x][y] = WallCell.new(x, y)
 				else: # IF WALLCELL (DEAD)
 					if live_neighbors >= birth_threshold:
-						gameMap.map[x][y] = FloorCell.new(x, y)
+						writeMap[x][y] = FloorCell.new(x, y)
+		readMap = writeMap.duplicate(true)
+	
+	gameMap.map = readMap
 
-
-func getLiveNeighbors(_cell : MapCell) -> int:
+func getLiveNeighbors(pos : Vector2i, readMap : Array) -> int:
 	var live_neighbors : int = 0
-	var pos = _cell.position
 	for i in range(1, 8):
 		match i:
 			1:
 				# UP
-				if (gameMap.map[pos.x][pos.y + -1] is FloorCell):
+				if (readMap[pos.x][pos.y + -1] is FloorCell):
 					live_neighbors += 1
 			2:
 				# DOWN
-				if (gameMap.map[pos.x][pos.y + 1] is FloorCell):
+				if (readMap[pos.x][pos.y + 1] is FloorCell):
 					live_neighbors += 1
 			3:
 				# LEFT
-				if (gameMap.map[pos.x - 1][pos.y] is FloorCell):
+				if (readMap[pos.x - 1][pos.y] is FloorCell):
 					live_neighbors += 1
 			4:
 				# RIGHT
-				if (gameMap.map[pos.x + 1][pos.y] is FloorCell):
+				if (readMap[pos.x + 1][pos.y] is FloorCell):
 					live_neighbors += 1
 			5:
 				# UP-RIGHT
-				if (gameMap.map[pos.x - 1][pos.y + 1] is FloorCell):
+				if (readMap[pos.x - 1][pos.y + 1] is FloorCell):
 					live_neighbors += 1
 			6:
 				# UP-LEFT
-				if (gameMap.map[pos.x -1][pos.y - 1] is FloorCell):
+				if (readMap[pos.x -1][pos.y - 1] is FloorCell):
 					live_neighbors += 1
 			7:
 				# DOWN-LEFT
-				if (gameMap.map[pos.x - 1][pos.y + 1] is FloorCell):
+				if (readMap[pos.x - 1][pos.y + 1] is FloorCell):
 					live_neighbors += 1
 			8:
 				# DOWN-RIGHT
-				if (gameMap.map[pos.x + 1][pos.y + 1] is FloorCell):
+				if (readMap[pos.x + 1][pos.y + 1] is FloorCell):
 					live_neighbors += 1
 	return live_neighbors
