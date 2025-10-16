@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://fwvovdelomoe"]
+
+[ext_resource type="Script" uid="uid://brbn5l1quosuf" path="res://assets/scenes/PathFinder.gd" id="1_hjbc7"]
+
+[node name="PathFinder" type="Node2D" node_paths=PackedStringArray("tileMap")]
+script = ExtResource("1_hjbc7")
+tileMap = NodePath("")

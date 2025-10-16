@@ -16,15 +16,19 @@ var wall_atlas := Vector2(1, 0)
 func _ready():
 	var dungeonGenerator: DungeonGenerator
 	gameMap = GameMap.new(width, height)
-	# Testing Zone #
+	# Dungeon Generator Testing Zone
 	# Initialize your dungeonGenerator then render the map, final test is baking.
 	dungeonGenerator = CellularAutomataDungeonGenerator.new(gameMap, 0.45, 6, 3, 3)
 	
 	dungeonGenerator.genDungeon()
-	# Testing Zone #
-	
-	gameMap.render()
+	# // End Dungeon Generator Testing Zone 
 	bakeMap(gameMap)
+	
+	# Pathfinding Testing Zone
+	var pathfinder = PathFinder.new(gameMap, tileMap)
+	add_child(pathfinder)
+	
+	# // End Pathfinding Testing Zone
 
 
 func bakeMap(game_map: GameMap) -> void:

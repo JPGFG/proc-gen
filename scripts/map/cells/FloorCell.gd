@@ -5,3 +5,4 @@ func _init(x:int, y:int):
 	position.x = x
 	position.y = y
 	glyph = "."
+	walkable = true

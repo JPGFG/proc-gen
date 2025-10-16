@@ -1,7 +1,7 @@
 class_name GenerationHandler
 extends Control
 
-enum dungeonType {RECT_CORRIDOR, DRUNKEN_WALK, PERLIN_NOISE}
+enum dungeonType {RECT_CORRIDOR, DRUNKEN_WALK, PERLIN_NOISE, CELLULAR_AUTOMATA}
 var generatorChoice = dungeonType
 var dungeonGenerators := []
 
@@ -33,6 +33,7 @@ func _on_d_generator_button_item_selected(index):
 		0: generatorChoice = dungeonType.RECT_CORRIDOR
 		1: generatorChoice = dungeonType.DRUNKEN_WALK
 		2: generatorChoice = dungeonType.PERLIN_NOISE
+		3: generatorChoice = dungeonType.CELLULAR_AUTOMATA
 	setupGenUI(generatorChoice)
 
 func generate():
@@ -63,6 +64,15 @@ func generate():
 			_dungeonGenerator = PerlinNoiseDungeonGenerator.new(_game_map, randi(), _frequency, _fractal_octaves, _fractal_lacunarity, _fractal_gain)
 			_dungeonGenerator.genDungeon()
 			bakeMap(_game_map)
+		dungeonType.CELLULAR_AUTOMATA:
+			var placement: float = float(inputOptionArray[0].inputField.text)
+			var survival: int = int(inputOptionArray[1].inputField.text)
+			var birth: int = int(inputOptionArray[2].inputField.text)
+			var generations: int = int(inputOptionArray[2].inputField.text)
+			
+			_dungeonGenerator = CellularAutomataDungeonGenerator.new(_game_map, placement, survival, birth, generations)
+			_dungeonGenerator.genDungeon()
+			bakeMap(_game_map)
 
 func setupGenUI(type:dungeonType):
 	match type:
@@ -75,6 +85,9 @@ func setupGenUI(type:dungeonType):
 		dungeonType.PERLIN_NOISE:
 			clearOptionUI()
 			handle_pn_generation()
+		dungeonType.CELLULAR_AUTOMATA:
+			clearOptionUI()
+			handle_ca_generation()
 
 func clearOptionUI():
 	for option in inputOptionArray:
@@ -97,11 +110,17 @@ func handle_pn_generation():
 	add_input_option("Lacunarity", 1)
 	add_input_option("Gain", 1)
 
+func handle_ca_generation():
+	add_input_option("Placement", 1)
+	add_input_option("Survival")
+	add_input_option("Birth")
+	add_input_option("Iterations")
+
 # type 0 == int, type 1 == float
-func add_input_option(_display_text: String, type : int = 0):
+func add_input_option(_display_text: String, _data_type : int = 0):
 	var option = inputOption.instantiate() as InputOption
 	option.displayText.text = _display_text
-	if type == 1:
+	if _data_type == 1:
 		option.inputField.placeholder_text = "/flt/"
 	inputOptionContainer.add_child(option)
 	inputOptionArray.append(option)

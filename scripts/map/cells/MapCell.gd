@@ -3,3 +3,4 @@ extends RefCounted
 
 var position: Vector2i
 var glyph: String
+var walkable: bool
