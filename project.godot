@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Procedural-Generator"
 config/description="A Procedural Generation Application"
-run/main_scene="uid://5blpnymuiwi0"
+run/main_scene="uid://8k77go8gydif"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://b58d1te0tdf60"
 
@@ -20,8 +20,10 @@ config/icon="uid://b58d1te0tdf60"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="viewport"
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

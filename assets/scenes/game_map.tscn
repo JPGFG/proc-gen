@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://5blpnymuiwi0"]
+[gd_scene load_steps=8 format=3 uid="uid://5blpnymuiwi0"]
 
 [ext_resource type="Texture2D" uid="uid://260tvsr7rcbn" path="res://assets/art/wall-tile-aseprite-spritesheet.png" id="2_bdhei"]
 [ext_resource type="PackedScene" uid="uid://bjoiwa2wyss7w" path="res://assets/scenes/ui_overlay.tscn" id="2_ug7s2"]
 [ext_resource type="Script" uid="uid://dfqkh73h463t" path="res://scripts/handlers/FreeCamera.gd" id="3_bdhei"]
+[ext_resource type="AudioStream" uid="uid://tcc3bpam4x7k" path="res://assets/art/music/background-track.mp3" id="4_ug7s2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bdhei"]
 resource_name = "dtest-tilemap"
@@ -37,3 +38,7 @@ shape = SubResource("CircleShape2D_o8cx1")
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="Camera"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ug7s2")
+autoplay = true

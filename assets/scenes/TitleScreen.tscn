@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://8k77go8gydif"]
+
+[ext_resource type="Texture2D" uid="uid://b58d1te0tdf60" path="res://assets/art/iconography/game-icon.png" id="1_8n5cd"]
+[ext_resource type="FontFile" uid="uid://jpnjoj46dxw4" path="res://assets/fonts/aurora_24/aurora-24.ttf" id="2_wvet8"]
+[ext_resource type="Theme" uid="uid://2x31sgdretky" path="res://assets/styles/style_theme.tres" id="3_r8d85"]
+[ext_resource type="Script" uid="uid://baypfgg0184xl" path="res://assets/scenes/startgame.gd" id="4_m2rt4"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 619.0
+offset_top = 429.0
+offset_right = 689.0
+offset_bottom = 499.0
+scale = Vector2(4.4833994, 4.419486)
+texture = ExtResource("1_8n5cd")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 154.0
+offset_right = 1011.0
+offset_bottom = 359.0
+scale = Vector2(1.4944664, 1.4731619)
+theme_override_fonts/normal_font = ExtResource("2_wvet8")
+theme_override_font_sizes/normal_font_size = 38
+text = "Procedural Generator
+Version 1.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1051.0
+offset_top = 521.0
+offset_right = 1264.0
+offset_bottom = 656.0
+theme = ExtResource("3_r8d85")
+text = "Get Started"
+script = ExtResource("4_m2rt4")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

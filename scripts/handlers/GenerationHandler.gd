@@ -16,13 +16,15 @@ var inputOption : PackedScene = preload("res://assets/scenes/input_option.tscn")
 
 var inputOptionArray : Array[InputOption] = []
 
+
 @export_category("TileMap Settings")
 @export var tileMap : TileMapLayer
+var game_map : GameMap
 
 var floor_atlas := Vector2(0, 0)
 var wall_atlas := Vector2(1, 0)
 
-#TODO implement x to toggle UI
+
 func _unhandled_key_input(event):
 	if event.is_pressed() and event.keycode == KEY_X:
 		if self.visible == true: self.visible = false
@@ -38,41 +40,38 @@ func _on_d_generator_button_item_selected(index):
 
 func generate():
 	var _dungeonGenerator
-	var _game_map : GameMap
-	_game_map = GameMap.new(int(i_MAPWIDTH_FIELD.text), int(i_MAPHEIGHT_FIELD.text))
+	game_map = GameMap.new(int(i_MAPWIDTH_FIELD.text), int(i_MAPHEIGHT_FIELD.text))
 	match generatorChoice:
 		dungeonType.RECT_CORRIDOR:
 			var _max_rooms = int(inputOptionArray[0].inputField.text)
 			var _min_rooms = int(inputOptionArray[1].inputField.text)
 			var _max_room_w = int(inputOptionArray[2].inputField.text)
 			var _max_room_h = int(inputOptionArray[3].inputField.text)
-			_dungeonGenerator = RectangleDungeonGenerator.new(_max_rooms, _min_rooms, _max_room_h, _max_room_w, _game_map)
+			_dungeonGenerator = RectangleDungeonGenerator.new(_max_rooms, _min_rooms, _max_room_h, _max_room_w, game_map)
 			_dungeonGenerator.genDungeon()
-			bakeMap(_game_map)
+			bakeMap(game_map)
 		dungeonType.DRUNKEN_WALK:
 			var _walkers = int(inputOptionArray[0].inputField.text)
 			var _steps = int(inputOptionArray[1].inputField.text)
-			_dungeonGenerator = DrunkWalkDungeonGenerator.new(_game_map, _steps, _walkers)
+			_dungeonGenerator = DrunkWalkDungeonGenerator.new(game_map, _steps, _walkers)
 			_dungeonGenerator.genDungeon()
-			bakeMap(_game_map)
+			bakeMap(game_map)
 		dungeonType.PERLIN_NOISE:
 			var _frequency : float = float(inputOptionArray[0].inputField.text)
 			var _fractal_octaves : int = int(inputOptionArray[1].inputField.text)
 			var _fractal_lacunarity : float = float(inputOptionArray[2].inputField.text)
 			var _fractal_gain : float = float(inputOptionArray[3].inputField.text)
-			
-			_dungeonGenerator = PerlinNoiseDungeonGenerator.new(_game_map, randi(), _frequency, _fractal_octaves, _fractal_lacunarity, _fractal_gain)
+			_dungeonGenerator = PerlinNoiseDungeonGenerator.new(game_map, randi(), _frequency, _fractal_octaves, _fractal_lacunarity, _fractal_gain)
 			_dungeonGenerator.genDungeon()
-			bakeMap(_game_map)
+			bakeMap(game_map)
 		dungeonType.CELLULAR_AUTOMATA:
 			var placement: float = float(inputOptionArray[0].inputField.text)
 			var survival: int = int(inputOptionArray[1].inputField.text)
 			var birth: int = int(inputOptionArray[2].inputField.text)
 			var generations: int = int(inputOptionArray[2].inputField.text)
-			
-			_dungeonGenerator = CellularAutomataDungeonGenerator.new(_game_map, placement, survival, birth, generations)
+			_dungeonGenerator = CellularAutomataDungeonGenerator.new(game_map, placement, survival, birth, generations)
 			_dungeonGenerator.genDungeon()
-			bakeMap(_game_map)
+			bakeMap(game_map)
 
 func setupGenUI(type:dungeonType):
 	match type:
@@ -150,7 +149,7 @@ func showWarning(warningText: String):
 	await get_tree().create_timer(2).timeout
 	warningPanel.visible = false
 
-func bakeMap(game_map: GameMap) -> void:
+func bakeMap(_game_map: GameMap) -> void:
 	if tileMap == null:
 		push_error("No Tile Map added to export field.")
 		return
@@ -159,8 +158,8 @@ func bakeMap(game_map: GameMap) -> void:
 	@warning_ignore("unused_variable")
 	var tileSet := tileMap.tile_set
 	var source_id = tileMap.tile_set.get_source_id(0)
-	for y in range(game_map.map_h):
-		for x in range(game_map.map_w):
-			var cell = game_map.map[x][y]
+	for y in range(_game_map.map_h):
+		for x in range(_game_map.map_w):
+			var cell = _game_map.map[x][y]
 			var atlas := wall_atlas if (cell is WallCell) else floor_atlas
 			tileMap.set_cell(Vector2i(x, y), source_id, atlas)
