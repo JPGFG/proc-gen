@@ -1,3 +1,5 @@
+# Testing framework, only used in test_scene, has no appearance in actual tool use.
+
 class_name Initializer
 extends Node2D
 

@@ -1,3 +1,4 @@
+# lightweight script for handling scene loading from main title UI.
 extends Button
 
 

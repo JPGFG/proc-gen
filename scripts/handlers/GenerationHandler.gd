@@ -1,6 +1,10 @@
+# Centerpoint of generator, handles all plugin map generators, and links
+# generation to the output on screen through use of tilemaps and map_data arrays.
+
 class_name GenerationHandler
 extends Control
 
+# For use in a dropdown list.
 enum dungeonType {RECT_CORRIDOR, DRUNKEN_WALK, PERLIN_NOISE, CELLULAR_AUTOMATA}
 var generatorChoice = dungeonType
 var dungeonGenerators := []
