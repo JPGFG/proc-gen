@@ -1,5 +1,5 @@
 # Cellular Automata Dungeon Generator, uses CA to populate the map according
-# to input values accessible by the UI.
+# to input values accessible by the UI.  Written by JP at Columbia University.
 
 
 class_name CellularAutomataDungeonGenerator
@@ -7,7 +7,7 @@ extends DungeonGenerator
 
 
 # float values 0.0 - 1.0
-var place_threshold : float # how often do we place a room
+var place_threshold : float # how often do we place a living node
 var survival_threshold: int # how many alive neighbors do we need to stay alive
 var birth_threshold: int # how many alive neighbors do we need to be reborn
 var desired_generations: int # how many cycles do we run CA

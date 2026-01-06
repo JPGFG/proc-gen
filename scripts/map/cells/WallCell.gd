@@ -1,3 +1,5 @@
+# The Wall Cells primary class on the map.
+
 class_name WallCell
 extends MapCell
 

@@ -1,3 +1,5 @@
+# The GameMap Object holds all the data for our map, this is eventually baked into a TileMapLayer, and serves as the 'owner' of all the map information.  Feel Free to add functionality, different types of maps, create 3D arrays for 3D options, or whatever you feel!  Created by JP at Columbia University.
+
 class_name GameMap
 extends RefCounted
 

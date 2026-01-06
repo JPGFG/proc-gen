@@ -1,3 +1,5 @@
+# Work in progress class.  Feel free to play around with this if you like.
+
 class_name PathFinder
 extends Node2D
 
