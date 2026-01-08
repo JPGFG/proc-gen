@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b58d1te0tdf60" path="res://assets/art/iconography/game-icon.png" id="1_8n5cd"]
 [ext_resource type="FontFile" uid="uid://jpnjoj46dxw4" path="res://assets/fonts/aurora_24/aurora-24.ttf" id="2_wvet8"]
 [ext_resource type="Theme" uid="uid://2x31sgdretky" path="res://assets/styles/style_theme.tres" id="3_r8d85"]
-[ext_resource type="Script" uid="uid://baypfgg0184xl" path="res://assets/scenes/startgame.gd" id="4_m2rt4"]
+[ext_resource type="Script" uid="uid://baypfgg0184xl" path="res://scripts/UI/startgame.gd" id="4_m2rt4"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
